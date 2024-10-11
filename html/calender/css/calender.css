@@ -1,0 +1,46 @@
+body {
+  padding: 20px;
+}
+
+h1,
+h3 {
+  text-align: center;
+}
+
+main {
+  width: 50%;
+  margin: 0 auto;
+}
+
+main img {
+  width: 100%;
+}
+
+#calender {
+  width: 100%;
+  border: 2px solid;
+  height: 200px;
+  margin: 0 auto;
+}
+
+#calender th {
+  width: 14%;
+  background-color: #cccccc;
+  height: 50px;
+}
+
+#calender td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #dbdbdb;
+}
+
+#calender th:first-child,
+#calender td:first-child {
+  color: #ff0000;
+}
+
+#calender th:last-child,
+#calender td:last-child {
+  color: #0000ff;
+}
