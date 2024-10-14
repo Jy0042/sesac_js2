@@ -19,3 +19,21 @@ id 는 유니크해야하며
 
 ===============================
 
+폰트이론
+
+Serif - 글자의 꼬리
+
+Sans-Serif - 글자 꼬리가 없는 글자
+
+Monospace - 간격이 일정 (개발 소스코드용으로 주로 사용)
+
+# Web-Safe Fonts 
+Arial (Sans-serif)
+Times New Roman (Serif)
+Courier New (Monospace)
+Brush Script MT (cursive)
+
+웹 폰트
+<link href="https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+  
+  font-family: "Sixtyfour Convergence", sans-serif;
