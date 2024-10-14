@@ -23,12 +23,12 @@ main nav img {
   width: 100%;
 }
 
-main section img {
+main article img {
   width: 100%;
   height: 300px;
 }
 
-section {
+article {
   width: 50%;
   display: flex;
   flex-direction: column;
