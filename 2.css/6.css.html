@@ -3,16 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <title>Document</title>
+    <style>
+      ul {
+        list-style: none;
+      }
+      .icon::before {
+        content: "★";
+        color: red;
+      }
+      .icon::after {
+        content: "💊";
+        color: blue;
+      }
+
+      .secondul li::before {
+        content: "☕️";
+      }
+    </style>
   </head>
   <body>
     <ul>
-      <li>아메리카노</li>
-      <ul>
+      <li class="icon">아메리카노</li>
+      <ul class="secondul">
         <li>아아</li>
         <li>뜨아</li>
       </ul>
-      <li>카푸치노</li>
-      <li>에스프레소</li>
+      <li class="icon">카푸치노</li>
+      <li class="icon">에스프레소</li>
     </ul>
   </body>
 </html>
