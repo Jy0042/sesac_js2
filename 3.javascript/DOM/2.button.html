@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      function changeColor() {
+        const mytext = document.getElementById("mytext");
+        mytext.style.color = "red";
+        mytext.style.backgroundColor = "lightblue";
+        mytext.innerHTML = "변경했다";
+      }
+
+      let i = 0;
+
+      function toggleColor() {
+        const mytext2 = document.getElementById("mytext2");
+        if (i == 0) {
+          mytext2.style.color = "red";
+          i = 1;
+        } else if (i == 1) {
+          mytext2.style.color = "blue";
+          i = 0;
+        }
+      }
+
+      i;
+    </script>
+  </head>
+  <body>
+    <p id="mytext">이 텍스트의 글자를 변경해보시오</p>
+    <button onclick="changeColor()">텍스트의 글자색 빨간색으로 바꾸기</button>
+    <br />
+    <br />
+    <hr />
+    <p id="mytext2">텍스트의 색상을 토글 해보기</p>
+    <button onclick="toggleColor(i)">토글</button>
+  </body>
+</html>
