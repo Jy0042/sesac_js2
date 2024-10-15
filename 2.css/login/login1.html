@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .main {
+        background: linear-gradient(to top, #2d0827, #551cb8, #2d0827);
+        height: 100vh;
+      }
+
+      .signup {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      form {
+        width: 400px;
+        height: 500px;
+        box-shadow: 1px 1px 20px 5px #000;
+        margin: 50px;
+        border-radius: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        /* overflow: hidden; */
+      }
+
+      form label {
+        font-size: 2.3em;
+        font-weight: bold;
+        color: #fff;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 50px 0;
+      }
+
+      .input-container {
+        width: 250px;
+      }
+
+      form input {
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        width: 100%;
+        background-color: #eee;
+        box-sizing: border-box;
+        border: none;
+        outline: none;
+      }
+
+      form input:hover {
+        outline: 2px solid rgb(7, 221, 192);
+        box-sizing: border-box;
+      }
+
+      form input:focus {
+        outline: 2px solid rgb(13, 239, 209);
+        box-sizing: border-box;
+      }
+
+      form button {
+        font-size: 16px;
+        font-weight: bold;
+        width: 100%;
+        height: 40px;
+        margin-top: 20px;
+        border-radius: 5px;
+        border-style: none;
+        color: #fff;
+        text-shadow: 1px 1px 3px #000;
+        background-color: #fddd0b;
+        margin-bottom: 50px;
+        cursor: pointer;
+        box-shadow: 0 5px 1px 2px #000;
+      }
+
+      form button:hover {
+        color: rgb(13, 239, 209);
+        box-shadow: 0 5px 1px 2px #000;
+      }
+
+      .login {
+        background-color: #fff;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: #fff;
+      }
+
+      .login label {
+        color: #f5da2a;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <!-- <input type="checkbox" /> -->
+      <div class="signup">
+        <form>
+          <label> Sign up </label>
+          <div class="input-container">
+            <input type="text" placeholder="Username" />
+            <input type="emails" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <button>Sign up</button>
+          </div>
+          <div class="login">
+            <form>
+              <label>Login</label>
+              <div class="input-container">
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Password" />
+              </div>
+              <button>Login</button>
+            </form>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
