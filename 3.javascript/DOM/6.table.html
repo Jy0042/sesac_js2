@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table border="1" style="text-align: center; width: 200px; height: 200px">
+      <tbody id="table">
+        <tr>
+          <td>셀 1</td>
+          <td>셀 2</td>
+          <td>셀 3</td>
+        </tr>
+        <tr>
+          <td>셀 4</td>
+          <td>셀 5</td>
+          <td>셀 6</td>
+        </tr>
+        <tr>
+          <td>셀 7</td>
+          <td>셀 8</td>
+          <td>셀 9</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <button onclick="changeCellColor()">셀 색상 변경</button>
+    <button onclick="changeOddCellColor()">홀수 셀 색상 변경</button>
+    <script>
+      function changeCellColor() {
+        document.getElementById("table").style.backgroundColor = "lightblue";
+      }
+
+      function changeOddCellColor() {
+        const oddCells = document.getElementsByTagName("td");
+        // oddCells[0].style.backgroundColor = "lightpink";
+        for (let i = 0; i < oddCells.length; i++) {
+          if (i % 2 === 0) {
+            oddCells[i].style.backgroundColor = "lightpink";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
