@@ -25,14 +25,27 @@
             // textContent = 글자 그대로 출력한다 (TAG 무시, CSS도 무시)
             // innerHTML = HTML 을 적용한 요소 (HTML/CSS)
             // innerText = 글자를 그대로 출력 (TAG 를 무시)
+
+            // 새로운 DOM 의 Node 를 만드려면?
+            var newParagraph = document.createElement("p");
+            newParagraph.innerHTML = "이것은 <b>사과</b>입니다";
+            document.body.appendChild(newParagraph);
             break;
           case "banana":
             // document.write("이것은 바나나 입니다");
             result.textContent = "이것은 바나나 입니다";
+
+            var newParagraph = document.createElement("p");
+            newParagraph.innerHTML = "이것은 <b>바나나</b>입니다";
+            document.body.appendChild(newParagraph);
             break;
           case "orange":
             // document.write("이것은 오렌지 입니다");
             result.textContent = "이것은 오렌지 입니다";
+
+            var newParagraph = document.createElement("p");
+            newParagraph.innerHTML = "이것은 <b>오렌지</b>입니다";
+            document.body.appendChild(newParagraph);
             break;
           default:
             document.write("이것은 무엇?");
