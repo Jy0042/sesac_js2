@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ccc;
+        flex-direction: column;
+      }
+
+      #viewBox {
+        width: 240px;
+        height: 68px;
+        background-color: #fff;
+        border-radius: 16px;
+        font-size: 24px;
+        padding: 16px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        box-shadow: inset 1px 1px 4px 1px #404040;
+        border: 1px solid #000;
+        margin-bottom: 16px;
+        overflow: scroll;
+      }
+
+      #viewBox::-webkit-scrollbar {
+        display: none;
+      }
+
+      #buttonContainer {
+        width: 280px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .button {
+        border: 1px solid #999;
+        font-size: 20px;
+        width: 52px;
+        height: 52px;
+        text-align: center;
+        border-radius: 16px;
+        padding: 8px;
+        box-shadow: 2px 2px 4px #404040;
+        transition: box-shadow 0.2s ease, scale 0.1s ease;
+        cursor: pointer;
+      }
+
+      button:active {
+        box-shadow: 1px 1px 2px #404040;
+        scale: 0.97;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="viewBox"></div>
+      <div id="buttonContainer">
+        <button class="button">+</button>
+        <button class="button">-</button>
+        <button class="button">*</button>
+        <button class="button">/</button>
+        <button class="button">7</button>
+        <button class="button">8</button>
+        <button class="button">9</button>
+        <button class="button">=</button>
+        <button class="button">4</button>
+        <button class="button">5</button>
+        <button class="button">6</button>
+        <button class="button">C</button>
+        <button class="button">1</button>
+        <button class="button">2</button>
+        <button class="button">3</button>
+        <button class="button">0</button>
+      </div>
+    </div>
+    <script>
+      const buttons = document.querySelectorAll(".button");
+      // console.log(buttons);
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const clickButton = e.target.textContent;
+          const viewBox = document.getElementById("viewBox");
+          // console.log(clickButton);
+
+          console.log(viewBox.textContent);
+
+          if (clickButton === "C") {
+            viewBox.textContent = "";
+          } else if (clickButton === "=") {
+            try {
+              const result = eval(viewBox.textContent);
+              viewBox.textContent = result;
+            } catch (error) {
+              viewBox.textContent = "Error";
+            }
+          } else {
+            document.getElementById("viewBox").textContent += clickButton;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
