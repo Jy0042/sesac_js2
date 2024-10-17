@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        margin: 10px;
+      }
+
+      #dragItem1 {
+        background-color: lightcoral;
+      }
+      #dragItem2 {
+        background-color: lightblue;
+      }
+      #dragItem3 {
+        background-color: lightgreen;
+      }
+      #dragItem4 {
+        background-color: lightgoldenrodyellow;
+      }
+
+      #dropZone {
+        width: 200px;
+        min-height: 200px;
+        margin-top: 50px;
+        border: 2px dashed #ccc;
+        background-color: #f0f0f0;
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="dragItem1" class="box" draggable="true">Drag Me1</div>
+    <div id="dragItem2" class="box" draggable="true">Drag Me2</div>
+    <div id="dragItem3" class="box" draggable="true">Drag Me3</div>
+    <div id="dragItem4" class="box" draggable="true">Drag Me4</div>
+    <div id="dropZone">Drag here</div>
+
+    <script>
+      const dropZone = document.getElementById("dropZone");
+
+      // document.get.addEventListener("dragstart", (e) => {
+      //   console.log("드래그 시작 " + e.target.id);
+      //   e.dataTransfer.setData("target", event.target.id);
+      // });
+
+      // document.getElementById("dragItem2").addEventListener("dragstart", (e) => {
+      //   console.log("드래그 시작 " + e.target.id);
+      //   e.dataTransfer.setData("target", e.target.id);
+      // });
+
+      // document.getElementById("dragItem3").addEventListener("dragstart", (e) => {
+      //   console.log("드래그 시작 " + e.target.id);
+      //   e.dataTransfer.setData("target", e.target.id);
+      // });
+
+      // document.getElementById("dragItem4").addEventListener("dragstart", (e) => {
+      //   console.log("드래그 시작 " + e.target.id);
+      //   e.dataTransfer.setData("target", e.target.id);
+      // });
+
+      const dragBoxes = document.querySelectorAll(".box");
+      // console.log(boxes);
+
+      dragBoxes.forEach((dragBox) => {
+        dragBox.addEventListener("dragstart", (e) => {
+          e.dataTransfer.setData("target", e.target.id);
+          console.log(`드래그 시작중 ${e.target.id}`);
+        });
+      });
+
+      dropZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        console.log("이 개체 위에 무언가 올라옴");
+      });
+
+      let currentWidth = 100;
+
+      dropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        console.log("드롭 발생");
+
+        const data = e.dataTransfer.getData("target");
+        const dropGetElement = document.getElementById(data);
+
+        dropZone.appendChild(dropGetElement);
+
+        currentWidth += 100;
+        dropZone.style.width = currentWidth + "px";
+      });
+    </script>
+  </body>
+</html>

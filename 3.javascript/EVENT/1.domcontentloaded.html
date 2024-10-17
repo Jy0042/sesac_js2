@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // document.addEventListener("DOMContentLoaded", 함수명); // 외부 함수 등록
+      // document.addEventListener("DOMContentLoaded", function () {}); // 함수 빌트인 - 익명 함수
+      // document.addEventListener("DOMContentLoaded", () => {}); // 함수 빌트인 - 화살표 함수(arrow function)
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // DOM 이 로딩이 되었을 때 출력
+        // 그말인즉, CSS라던지, Image 라던지, 이런 실제 모든 컨첸츠는 로딩 되었다고 보장할 수 없다
+        console.log("DOM 이 완전히 로딩 되었음");
+      });
+    </script>
+  </body>
+</html>
