@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./imagegallery.css" />
+  </head>
+  <body>
+    <h1 class="title">Image Slider</h1>
+    <div class="showImageContainer">
+      <div class="imageBox"><img src="./image/cat1.jpeg" alt="" /></div>
+    </div>
+    <div class="buttonContainer">
+      <p id="imageName"></p>
+      <button id="prevButton" class="button">previous</button>
+      <button id="nextButton" class="button">next</button>
+    </div>
+    <script>
+      const imageElement = document.querySelector("img");
+      const images = ["cat1.jpeg", "cat2.jpeg", "cat3.jpeg"];
+      const imageName = document.getElementById("imageName");
+      let imageIndex = 0;
+
+      imageName.innerHTML = images[0];
+      console.log(imageIndex);
+
+      function prevButton() {
+        imageIndex = (imageIndex - 1 + images.length) % images.length;
+        updateImage();
+        console.log(imageIndex);
+      }
+
+      function nextButton() {
+        imageIndex = (imageIndex + 1) % images.length;
+        updateImage();
+        console.log(imageIndex);
+      }
+
+      function updateImage() {
+        imageElement.src = `./image/${images[imageIndex]}`;
+        imageName.innerHTML = images[imageIndex];
+      }
+
+      document.getElementById("prevButton").addEventListener("click", prevButton);
+      document.getElementById("nextButton").addEventListener("click", nextButton);
+    </script>
+  </body>
+</html>

@@ -1,3 +1,7 @@
+.title {
+  text-align: center;
+}
+
 main {
   width: 100%;
   display: flex;
@@ -27,4 +31,13 @@ img {
 .imageBox {
   width: 400px;
   height: 400px;
+}
+
+.buttonContainer {
+  text-align: center;
+  gap: 8px;
+}
+
+.button {
+  height: 30px;
 }
