@@ -21,10 +21,10 @@
 
       #viewBox {
         width: 240px;
-        height: 68px;
+        height: 60px;
         background-color: #fff;
         border-radius: 16px;
-        font-size: 24px;
+        font-size: 28px;
         padding: 16px;
         box-sizing: border-box;
         display: flex;
@@ -33,6 +33,7 @@
         border: 1px solid #000;
         margin-bottom: 16px;
         overflow: scroll;
+        white-space: nowrap;
       }
 
       #viewBox::-webkit-scrollbar {
@@ -60,6 +61,12 @@
         cursor: pointer;
       }
 
+      .clear {
+        background-color: #e96f1e;
+        color: #fff;
+        border: none;
+      }
+
       button:active {
         box-shadow: 1px 1px 2px #404040;
         scale: 0.97;
@@ -81,7 +88,7 @@
         <button class="button">4</button>
         <button class="button">5</button>
         <button class="button">6</button>
-        <button class="button">C</button>
+        <button class="button clear">C</button>
         <button class="button">1</button>
         <button class="button">2</button>
         <button class="button">3</button>
@@ -112,6 +119,8 @@
           } else {
             document.getElementById("viewBox").textContent += clickButton;
           }
+
+          viewBox.scrollLeft = viewBox.scrollWidth;
         });
       });
     </script>
