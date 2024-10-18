@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./imagegallery.css" />
+  </head>
+  <body>
+    <h1>Image Gallery</h1>
+    <main>
+      <div class="image" id="catImage1"><img src="./image/cat1.jpeg" alt="고양이 사진1" /></div>
+      <div class="image" id="catImage2"><img src="./image/cat2.jpeg" alt="고양이 사진2" /></div>
+      <div class="image" id="catImage3"><img src="./image/cat3.jpeg" alt="고양이 사진3" /></div>
+    </main>
+    <div class="showImageContainer">
+      <div class="imageBox">
+        <!-- <img src="./image/cat1.jpeg" alt="" /> -->
+      </div>
+    </div>
+    <script>
+      // window.addEventListener("click", (e) => {
+      //   console.log(`현재 클릭된것: ${e.target.tagName}`);
+      // });
+      const showImage = document.querySelector(".imageBox");
+
+      document.querySelectorAll(".image").forEach((image) => {
+        image.addEventListener("click", (e) => {
+          const cloneImage = e.target.cloneNode(true);
+          const changeImage = showImage.querySelector("img");
+
+          console.log(`현재 클릭된 이미지: ${e.target.parentElement.id}`);
+
+          showImage.appendChild(cloneImage);
+
+          console.log(changeImage);
+          if (changeImage) {
+            showImage.replaceChild(cloneImage, changeImage);
+          }
+        });
+      });
+      showImage.addEventListener("click", (e) => {
+        e.target.remove();
+      });
+    </script>
+  </body>
+</html>
