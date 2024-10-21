@@ -16,13 +16,11 @@ main {
 
 img {
   width: 100%;
-  height: 100%;
   border-radius: 12px;
 }
 
 .showImageContainer {
   width: 100%;
-  height: inherit;
   margin-top: 20px;
   display: flex;
   justify-content: center;
@@ -40,12 +38,20 @@ img {
 
 .imageBox2 {
   width: 100%;
-  display: flex;
+  height: 700px;
+  position: relative;
   overflow: hidden;
+}
+
+#images {
+  width: 100%;
+  height: 100%;
+  display: flex;
 }
 
 .imageBox2 img {
   width: 100%;
+  object-fit: cover;
 }
 
 .buttonContainer {
@@ -54,10 +60,12 @@ img {
 }
 
 .buttonContainer2 {
-  width: inherit;
+  width: 100%;
+  height: 50px;
   display: flex;
   justify-content: space-between;
-  position: fixed;
+  align-items: center;
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -66,7 +74,18 @@ img {
   width: 100px;
   height: 50px;
   cursor: pointer;
-  margin: 20px;
+  margin: 0 20px;
   opacity: 0.5;
   border-radius: 24px;
+  transition: opacity 0.5s ease;
+}
+
+.button:hover {
+  opacity: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+  background-color: #222222;
+  color: #fff;
 }
