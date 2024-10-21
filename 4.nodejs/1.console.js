@@ -25,7 +25,7 @@ console.log("과일: ", fruits);
 console.log(fruits[0]);
 console.log(fruits[1]);
 console.log(fruits[2]);
-console.log(fruits[3]);
+console.log(fruits[3]); // 없는 멤버는 undefined 가 나옴..
 
 // 7. 성능측정 같은 걸 원할 때
 console.time("test");
@@ -33,4 +33,4 @@ console.log("우리의 복잡한 로직을 처리할 때");
 console.timeEnd("test");
 
 // 8. 스타일
-console.log("%c 스타일 적용한 텍스트", "color:");
+console.log("%c 스타일 적용한 텍스트", "color: blue; font-weight: bold");
