@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .calculator {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      .calculator input {
+        grid-column: span 4;
+        padding: 10px;
+      }
+      .calculator button {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="calculator">
+        <input type="text" id="result" readonly />
+        <button onclick="appendSymbol(this.innerText)">+</button>
+        <button onclick="appendSymbol(this.innerText)">-</button>
+        <button onclick="appendSymbol(this.innerText)">*</button>
+        <button onclick="appendSymbol(this.innerText)">/</button>
+        <button onclick="appendNumber(this.innerText)">7</button>
+        <button onclick="appendNumber(this.innerText)">8</button>
+        <button onclick="appendNumber(this.innerText)">9</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="appendNumber(this.innerText)">4</button>
+        <button onclick="appendNumber(this.innerText)">5</button>
+        <button onclick="appendNumber(this.innerText)">6</button>
+        <button onclick="clearResult()">C</button>
+        <button onclick="appendNumber(this.innerText)">1</button>
+        <button onclick="appendNumber(this.innerText)">2</button>
+        <button onclick="appendNumber(this.innerText)">3</button>
+        <button onclick="appendNumber(this.innerText)">0</button>
+      </div>
+    </div>
+    <script>
+      function appendNumber(number) {
+        document.getElementById("result").value += number;
+      }
+
+      function isSymbol(value) {
+        // if (value === "+" || value === "-" || value === "*" || value === "/") {
+        //   return true;
+        // } else {
+        //   return false;s
+        // }
+
+        return ["+ ", "-", "*", "/"].includes(value);
+      }
+
+      function appendSymbol(symbol) {
+        const resultDOM = document.getElementById("result");
+        // TODO: 이 칸에 있는 이전 글자가 무엇인지?
+        const lastInput = resultDOM.value[resultDOM.value.length - 1];
+
+        if (isSymbol[lastInput]) {
+          // resultDOM.value += symbol;
+          console.log(lastInput, symbol);
+          resultDOM.value = resultDOM.value.slice(0, -1) + symbol;
+        } else {
+          resultDOM.value += symbol;
+        }
+      }
+
+      function calculate() {
+        const resultDOM = document.getElementById("result");
+        const lastInput = resultDOM.value(resultDOM.value.length - 1);
+
+        if (isSymbol(lastInput)) {
+          resultDOM.value = resultDOM.value.slice(0, -1);
+          resultDOM.value - "ERROR";
+          return;
+        }
+      }
+
+      function clearResult() {
+        document.getElementById("result").value = "";
+      }
+    </script>
+  </body>
+</html>
