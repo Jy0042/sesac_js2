@@ -9,7 +9,7 @@ console.log(fruits[fruits.length - 1]);
 fruits[1] = "BANANA";
 console.log(fruits);
 
-// 배열 순회
+// 배열 순회 - 전통적인/고전적인 메모리의 주소값을 순회(iterate) 하는 방식
 for (let i = 0; i < fruits.length; i++) {
   console.log(fruits[i]);
 }

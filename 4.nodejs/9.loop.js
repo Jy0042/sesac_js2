@@ -14,14 +14,14 @@ for (let i = 0; i < 10; i++) {
   {
     console.log(`for 구문: ${i}`);
     if (i == 3) {
-      break;
+      break; // for/dowhile/while 어디던지.. 중간에 해당 블럭을 중단한다..
     }
   }
 }
 
 for (let i = 0; i < 10; i++) {
   if (i == 3) {
-    continue;
+    continue; // for/dowhile/while 어디던지.. 중간에 해당 블럭의 흐름을 건너뛴다..
   }
   console.log(`for 구문: ${i}`);
 }
