@@ -1,5 +1,3 @@
-import Car from "./Car.mjs";
-
 class Person {
   constructor(name, age, gender) {
     this.name = name;
@@ -10,8 +8,8 @@ class Person {
   greet() {
     console.log(`안녕 ${this.name}`);
   }
-  getInCar() {
-    console.log(`${this.brand} ${this.model} ${this.color} 차가 운행 중`);
+  getInCar(car) {
+    console.log(`${car.brand} ${car.model} ${car.color} 에 탑승`);
   }
 }
 

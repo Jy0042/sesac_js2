@@ -5,8 +5,8 @@ class Parents extends Person {
     super(name, age, gender);
     this.drive = drive;
   }
-  driveCar() {
-    console.log(`${this.driveCar} ddd`);
+  driveCar(car) {
+    console.log(`${car.model} 이건 드라이브 카`);
   }
 }
 export default Parents;
