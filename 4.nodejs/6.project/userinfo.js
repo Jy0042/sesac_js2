@@ -33,18 +33,13 @@ function generatorGender() {
 }
 
 function getRandomInRange(min, max) {
-  const num = Math.floor(Math.random() * (max - min + 1)) + min;
-  if (num < 10) {
-    return String(num).padStart(2, 0);
-  } else {
-    return num;
-  }
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function generatorBirth() {
   const year = getRandomInRange(1960, 2010);
-  const month = getRandomInRange(1, 12);
-  const day = getRandomInRange(1, 28);
+  const month = String(getRandomInRange(1, 12)).padStart(2, "0");
+  const day = String(getRandomInRange(1, 28)).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
 
@@ -79,7 +74,7 @@ function generatorAddress() {
 
 const userDB = [];
 
-for (let i = 1; i < 1000; i++) {
+for (let i = 0; i < 1000; i++) {
   const birthDate = generatorBirth();
   userDB.push({
     id: generatorId(),
