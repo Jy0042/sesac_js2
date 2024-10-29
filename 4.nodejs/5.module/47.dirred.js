@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const directoryPath = "./";
 
@@ -24,6 +24,9 @@ function checkFile(filePath) {
 
 function checkFileSync(filePath) {
   // 당장 파일 정보를 가져와서, 그 결과를 나에게 보고 하시오
+
+  const stats = fs.statSync(filePath);
+
   fs.statSync(filePath, (err, stats) => {
     // 준비가 됐을 때 처리할 로직이 들어가는 위치
     if (err) {

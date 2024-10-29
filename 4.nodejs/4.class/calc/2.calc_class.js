@@ -9,6 +9,7 @@ class UserInput {
       output: process.stdout,
     });
   }
+
   getUserInput() {
     this.readline.question("첫번째 숫자를 입력하시오: ", (num1) => {
       this.readline.question("연산자를 입력하시오 (+,-,*,/): ", (operator) => {
@@ -18,11 +19,11 @@ class UserInput {
 
           if (isNaN(number1 || number2)) {
             console.log("숫자만 입력하세요");
-            rl.close();
+            this.readline.close();
             return;
           }
 
-          const result = new Calculator(number1, operator, number2);
+          const result = this.calculator.calculate(number1, operator, number2);
           console.log(`결과: ${result}`);
           this.readline.close();
         });
@@ -31,38 +32,39 @@ class UserInput {
   }
 }
 
-function add(num1, num2) {
-  return num1 + num2;
-}
-function sub(num1, num2) {
-  return num1 - num2;
-}
-function mul(num1, num2) {
-  return num1 * num2;
-}
-function div(num1, num2) {
-  return num1 / num2;
-}
-
 class Calculator {
-  constructor(num1, operator, num2) {
-    this.num1 = num1;
-    this.operator = operator;
-    this.num2 = num2;
+  add(num1, num2) {
+    return num1 + num2;
+  }
+
+  sub(num1, num2) {
+    return num1 - num2;
+  }
+
+  mul(num1, num2) {
+    return num1 * num2;
+  }
+
+  div(num1, num2) {
+    return num2 !== 0 ? num1 / num2 : "Error: 0으로 나눌 수 없음";
+  }
+
+  calculate(num1, operator, num2) {
     switch (operator) {
       case "+":
-        return add(num1, num2);
+        return this.add(num1, num2);
       case "-":
-        return sub(num1, num2);
+        return this.sub(num1, num2);
       case "*":
-        return mul(num1, num2);
+        return this.mul(num1, num2);
       case "/":
-        return div(num1, num2);
+        return this.div(num1, num2);
       default:
         return "Invalid operator";
     }
   }
 }
+const calculator = new Calculator();
+const userInput = new UserInput(calculator);
 
-const userInput = new UserInput();
 userInput.getUserInput();

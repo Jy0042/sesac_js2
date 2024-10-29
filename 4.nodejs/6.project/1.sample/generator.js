@@ -37,17 +37,23 @@ function generatorAddress() {
   return `${street} ${city}`;
 }
 
-const uesrdb = [];
+const userDB = [];
 
 for (let i = 0; i < 10; i++) {
-  uesrdb.push([generatorName(), generatorGender(), generatorBirth(), generatorAddress()]);
+  // userDB.push([generatorName(), generatorGender(), generatorBirth(), generatorAddress()]);
+  userDB.push({
+    name: generatorName(),
+    gender: generatorGender(),
+    birthdate: generatorBirth(),
+    city: generatorAddress(),
+  });
 }
 
-for (const user of uesrdb) {
+for (const user of userDB) {
   console.log(user);
 }
 
-// console.log(uesrdb);
+console.log(userDB);
 
 // csv 형태로 파일에 저장
 // user.csv
@@ -62,12 +68,13 @@ for (const user of uesrdb) {
 //   fs.writeFileSync(filePath, csvContent, "utf8");
 // }
 
-// writeDataToCSV(uesrdb, "user.csv");
+// writeDataToCSV(userDB, "user2.csv");
 
-import createCsvWriter from ("csv-writer").createObjectCsvWriter;
+// csv-writer 사용 시
+import { createObjectCsvWriter } from "csv-writer";
 
-const csvWrite = createCsvWriter({
-  path: "user2.csv",
+const csvWrite = createObjectCsvWriter({
+  path: "user.csv",
   header: [
     { id: "name", title: "Name" },
     { id: "gender", title: "Gender" },
@@ -76,6 +83,6 @@ const csvWrite = createCsvWriter({
   ],
 });
 
-csvWrite.writeRecords(userdb).then(() => {
+csvWrite.writeRecords(userDB).then(() => {
   console.log("저장 됨");
 });

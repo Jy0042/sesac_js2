@@ -1,11 +1,14 @@
-console.log("1. 타이머를 통한 비동기 처리");
+console.log("타이머를 통한 비동기처리");
 
-setTimeout(() => {
-  console.log("2. 첫번째 작업: 2초후 실행");
-}, 2000);
+function greet() {
+  console.log("안녕하세요");
+}
 
-setTimeout(() => {
-  console.log("3. 두번째 작업: 1초후 실행");
-}, 1000);
+// setTimeout(1000, greet); 한국말 어순은...
+setTimeout(greet, 1000); // 영어는 거꾸로...
+setTimeout(greet, 1000);
+setTimeout(greet, 1000);
+setTimeout(greet, 1000);
 
-console.log("4. 모든 작업 완료");
+// a -> b 저장합니다
+// a <- b 저정합니다.

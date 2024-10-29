@@ -1,55 +1,11 @@
-const fs = require("fs");
-const path = require("path");
+console.log("1. 타이머를 통한 비동기처리");
 
-const directoryPath = "./";
+setTimeout(() => {
+  console.log("2. 첫번째 작업: 2초후 실행");
+}, 2000); // 2초
 
-function checkFile(filePath) {
-  //파일에 대한 정보를 가져다가, 준비가 되면? 나를 불러줘
-  const stats = fs.stat(fileSync);
+setTimeout(() => {
+  console.log("3. 두번째 작업: 1초후 실행");
+}, 1000); // 1초
 
-  if (stats.isFile) {
-    console.log(`${filePath}: 이건 파일 입니다`);
-  } else if (stats.isDirectory()) {
-    console.log(`${filePath}: 이건 디렉토리 입니다`);
-  } else {
-    console.log(`${filePath}: 모르겠음`);
-  }
-}
-
-function checkFileSync(filePath) {
-  //파일에 대한 정보를 가져다가, 준비가 되면? 나를 불러줘 xx
-  // 당장 파일 정보를 가져와서, 그 결과를 나에게 보고 하시오
-  fs.statSync(filePath, (err, stats) => {
-    // 준비가 됐을 때 처리할 로직이 들어가는 위치
-    if (err) {
-      console.log("조회 실패");
-      return;
-    }
-
-    if (stats.isFile) {
-      console.log(`${filePath}: 이건 파일 입니다`);
-      return;
-    } else if (stats.isDirectory()) {
-      console.log(`${filePath}: 이건 디렉토리 입니다`);
-      return;
-    } else {
-      console.log(`${filePath}: 모르겠음`);
-      return;
-    }
-  });
-}
-
-fs.readdir(directoryPath, (err, files) => {
-  // 콜백함수 내용 - 디렉토리 읽는 게 끝났을 때 호출할 내용
-  if (err) {
-    console.log("읽기 오류");
-    return;
-  }
-
-  // console.log(files);
-  files.forEach((file) => {
-    const filePath = path.join(directoryPath, file);
-    console.log("파일: ", filePath);
-    checkFileSync(filePath);
-  });
-});
+console.log("4. 모든 작업이 완료되었습니다.");

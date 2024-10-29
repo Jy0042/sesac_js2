@@ -9,6 +9,7 @@ class UserInput {
       output: process.stdout,
     });
   }
+
   getUserInput() {
     this.readline.question("첫번째 숫자를 입력하시오: ", (num1) => {
       this.readline.question("연산자를 입력하시오 (+,-,*,/): ", (operator) => {
@@ -16,7 +17,13 @@ class UserInput {
           const number1 = parseFloat(num1);
           const number2 = parseFloat(num2);
 
-          const result = calculator(number1, operator, number2);
+          if (isNaN(number1 || number2)) {
+            console.log("숫자만 입력하세요");
+            this.readline.close();
+            return;
+          }
+
+          const result = this.calculator.calculate(number1, operator, number2);
           console.log(`결과: ${result}`);
           this.readline.close();
         });
@@ -25,40 +32,39 @@ class UserInput {
   }
 }
 
-
-selectCalculatorMode() {
-  console.log('Select Calculator Mode:');
-  console.log('1. 공학용 계산기');
-  console.log('2. 표준 계산기');
-  console.log('3. 프로그래머용 계산기');
-
-  this.readline.question("모드 선택 (1/2/3): ",(mode) => {
-    switch(mode) {
-      case '1':
-        this.calculator = new EngineeringCalculator();
-        this.calculator.getOperators();
-        this.operator = this.calculator.getOperators();
-        break;
-    case '2':
-        this.calculator = new StandardCalculator();
-        this.calculator.getOperators();
-        this.operator = this.calculator.getOperators();
-        break;
-    case '3':
-        this.calculator = new StandardCalculator();
-        this.calculator.getOperators();
-        this.operator = this.calculator.getOperators();
-        break;
+class Calculator {
+  add(num1, num2) {
+    return num1 + num2;
   }
+
+  sub(num1, num2) {
+    return num1 - num2;
+  }
+
+  mul(num1, num2) {
+    return num1 * num2;
+  }
+
+  div(num1, num2) {
+    return num2 !== 0 ? num1 / num2 : "Error: 0으로 나눌 수 없음";
+  }
+
+  calculate(num1, operator, num2) {
+    switch (operator) {
+      case "+":
+        return this.add(num1, num2);
+      case "-":
+        return this.sub(num1, num2);
+      case "*":
+        return this.mul(num1, num2);
+      case "/":
+        return this.div(num1, num2);
+      default:
+        return "Invalid operator";
+    }
   }
 }
+const calculator = new Calculator();
+const userInput = new UserInput(calculator);
 
-
-  class Calculator {
-    constructor(num1, operator, num2) {
-      this.num1 = num1;
-      this.num2 = num2;
-      this.operator = operator;
-    }
-    
-  }
+userInput.getUserInput();
