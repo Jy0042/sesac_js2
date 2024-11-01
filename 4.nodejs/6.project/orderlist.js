@@ -22,8 +22,6 @@ async function readCsv(file, arr) {
 await readCsv("user.csv", users);
 await readCsv("store.csv", stores);
 
-// ---------------------
-
 // uuid 생성
 function generatorId() {
   return uuidv4();
@@ -63,7 +61,7 @@ function orderUser() {
   return userId;
 }
 
-// 오더 데이터 저장소 초기화
+// 저장소 초기화
 const orderDB = [];
 
 // orderDB 생성
