@@ -36,7 +36,7 @@ function generatorOrderAt() {
   const year = getRandomInRange(2020, 2024);
   const month = String(getRandomInRange(1, 12)).padStart(2, "0");
   const day = String(getRandomInRange(1, 28)).padStart(2, "0");
-  const hour = String(getRandomInRange(1, 24)).padStart(2, "0");
+  const hour = String(getRandomInRange(0, 23)).padStart(2, "0");
   const minute = String(getRandomInRange(1, 60)).padStart(2, "0");
   const second = String(getRandomInRange(1, 60)).padStart(2, "0");
 

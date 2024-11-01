@@ -86,8 +86,6 @@ for (let i = 0; i < 1000; i++) {
   });
 }
 
-console.log(userDB);
-
 import { createObjectCsvWriter } from "csv-writer";
 
 const csvWrite = createObjectCsvWriter({

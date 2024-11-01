@@ -65,8 +65,6 @@ for (let i = 0; i < 100; i++) {
   });
 }
 
-console.log(userDB);
-
 import { createObjectCsvWriter } from "csv-writer";
 
 const csvWrite = createObjectCsvWriter({
@@ -79,4 +77,4 @@ const csvWrite = createObjectCsvWriter({
   ],
 });
 
-csvWrite.writeRecords(userDB).then(() => console.log("카페 데이터 저장 완료"));
+csvWrite.writeRecords(userDB).then(() => console.log("store 데이터 저장 완료"));
