@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 const users = [];
 const stores = [];
 
-// ## 원본
 // csv 불러오기
 async function readCsv(file, arr) {
   return new Promise((resolve) => {
