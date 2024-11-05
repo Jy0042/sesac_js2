@@ -72,6 +72,8 @@ function handlePostRequest(req, res) {
 }
 
 function handlePutRequest(req, res) {
+  if (req.method === "PUT") {
+  }
   res.end("PUT 요청 응답 완료");
 }
 
