@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <nav>
+      <a href="">상단메뉴1</a>
+      <a href="">상단메뉴2</a>
+      <a href="">상단메뉴3</a>
+    </nav>
+    <header>
+      <h1>{{ title }}</h1>
+    </header>
+    <main>{% block content %}<!-- 여기가 동적으로 변경될 내용 -->{% endblock %}</main>
+    <footer>
+      <p>copyright 기타 등등</p>
+    </footer>
+  </body>
+</html>
