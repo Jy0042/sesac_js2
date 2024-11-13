@@ -1,6 +1,5 @@
 import http from "http";
 import { promises as fs } from "fs";
-import path from "path";
 
 const port = 3000;
 

@@ -4,3 +4,7 @@ node_modules/
 # 개발 하면서 생겨난 각종 중간 산출물 제외
 *.txt
 *.csv
+*.db
+*.sqlite
+*.sqlite3
+:memory
