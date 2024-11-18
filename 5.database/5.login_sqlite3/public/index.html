@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>로그인</h1>
+    <form id="loginFormContainer">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required /><br />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required /><br />
+      <button type="submit" id="login-button">로그인</button>
+    </form>
+
+    <div id="profile" style="display: none">
+      <h2>환영합니다</h2>
+      <p>로그인 : <span id="usernameSpan"></span></p>
+      <button id="profile-button">프로필 보기</button>
+      <button id="logout-button">Logout</button>
+    </div>
+
+    <script src="/public/login.js"></script>
+  </body>
+</html>

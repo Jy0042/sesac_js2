@@ -30,6 +30,35 @@ function initializeDatabase() {
 
 initializeDatabase();
 
+app.get("/products", (req, res) => {
+  // const name = req.params.name;
+  const { name } = req.query; // 위에껄 축약한 거
+
+  console.log(name);
+
+  if (name) {
+    const query = db.prepare("SELECT * FROM products WHERE name LIKE ?");
+    const rows = query.all(`%${name}%`); // all은 [], get {}
+
+    console.log(rows);
+
+    res.json(rows);
+  } else {
+    const query = db.prepare("SELECT * FROM products");
+    const rows = query.all();
+
+    res.json(rows);
+  }
+});
+
+app.get("/products_weak", (req, res) => {
+  const { name } = req.query;
+  const queryStr = `SELECT * FROM products WHERE name LIKE '%${name}%'`;
+  const query = db.prepare(queryStr);
+  const rows = query.all();
+  res.json(rows);
+});
+
 app.get("/users", (req, res) => {
   try {
     const users = db.prepare("SELECT * FROM users").all();
