@@ -8,6 +8,7 @@ node_modules/
 *.sqlite
 *.sqlite3
 :memory
+*.log
 
 # credentials
 .env
