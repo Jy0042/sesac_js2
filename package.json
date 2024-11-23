@@ -14,5 +14,16 @@
     "nunjucks": "^3.2.4",
     "sqlite3": "^5.1.7",
     "uuid": "^11.0.2"
-  }
+  },
+  "name": "sesac_js2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
