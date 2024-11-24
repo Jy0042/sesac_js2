@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRM Project - Customer Management System</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <nav>
+        <ul>
+          <li><a href="/users">User</a></li>
+          <li><a href="/orders">Order</a></li>
+          <li><a href="/order_items">Order Item</a></li>
+          <li><a href="/items">Item</a></li>
+          <li><a href="/stores">Store</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <table>
+          <thead id="thead"></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div id="pagination" class="pagination-container"></div>
+    <script src="/js/common.js"></script>
+    <script src="/js/orderItem.js"></script>
+  </body>
+</html>
