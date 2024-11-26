@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="barGraph" width="400" height="200"></canvas>
+
+    <script>
+      // 샘플데이터
+      const graphData = {
+        A: 60,
+        B: 70,
+        C: 130,
+        D: 70,
+        E: 60,
+      };
+
+      drawBarGraph(graphData);
+
+      function drawBarGraph(data) {
+        const canvas = document.getElementById("barGraph");
+        const ctx = canvas.getContext("2d");
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔바스 초기화
+
+        const barWidth = 30; // 바 그래프의 폭 (width)
+        const barHeightOffset = 20;
+        const textHeightOffset = 8;
+        let startX = 20; // 그리기 시작점
+
+        for (const key in data) {
+          const barHeight = data[key];
+
+          ctx.fillStyle = "salmon";
+          ctx.fillRect(startX, canvas.height - barHeight - barHeightOffset, barWidth, barHeight);
+
+          ctx.fillStyle = "black";
+          ctx.fillText(key, startX + barWidth / 2.5, canvas.height - textHeightOffset);
+          startX += 50;
+        }
+      }
+    </script>
+  </body>
+</html>
