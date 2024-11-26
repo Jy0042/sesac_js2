@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        width: 50%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>월간 매출액</h1>
+    <table>
+      <tr>
+        <th>년-월</th>
+        <th>해당월 매출액</th>
+        <th>해당월 판매수</th>
+      </tr>
+      {% for row in rows %}
+      <tr>
+        <td>{{ row.YearMonth }}</td>
+        <td>{{ row.MonthlyRevenue }}</td>
+        <td>{{ row.SoldCount }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <canvas id="chartBar"></canvas>
+    <canvas id="chartLine"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      // 1. 백엔드에서 rows 라고 보냈으니 어떻게든 여기서 추출
+
+      const labels2 = [];
+      const revenues2 = [];
+
+      {% for row in rows %}
+        labels2.push('{{row.YearMonth}}')
+        labels2.push('{{row.MonthlyRevenue}}')
+      {% endfor %}
+
+      console.log(labels2);
+      console.log(revenues2);
+
+      // const rows = {{ rows }};
+
+      // const labels = [{% for row in rows %}"{{ row.YearMonth }}"{% if not loop.last %}, {% endif %}{% endfor %}];
+      // const revenues = [{% for row in rows %}{{ row.MonthlyRevenue }}{% if not loop.last %}, {% endif %}{% endfor %}];
+
+      // console.log(JSON.stringify(rows));
+
+      // 2. 내가원하는걸 백엔드에서 보내줌
+      const labels = {{ labels | safe }};
+      const revenues = {{ revenues | safe }};
+      const counts = {{ counts | safe }};
+
+      console.log(labels);
+      console.log(revenues);
+      console.log(counts);
+
+      const ctxChartBar = document.getElementById("chartBar").getContext("2d");
+      new Chart(ctxChartBar, {
+        type: "bar",
+        data: {
+          // labels : [x 축의 데이터]
+          labels : labels,
+          datasets: [
+            {
+              label: "Monthly Revenue",
+              // data: [실제 데이터의 y축 값]
+              data: revenues,
+              count: counts
+            },
+          ],
+        },
+      });
+
+      const ctxChartLine = document.getElementById("chartLine").getContext("2d");
+      new Chart(ctxChartLine, {
+        type: "line",
+        data: {
+          // labels : [x 축의 데이터]
+          labels : labels,
+          datasets: [
+            {
+              label: "Monthly Revenue",
+              // data: [실제 데이터의 y축 값]
+              data: revenues,
+              count: counts
+
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>
