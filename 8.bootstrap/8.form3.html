@@ -26,13 +26,11 @@
               name="id"
               id="id"
               class="form-control"
-              placeholder="아이디를 입력하세요"
+              placeholder="아이디는 3~10글자 입력하세요"
             />
             <!-- <span class="input-group-text"><i class="bi bi-check-lg text-success"></i></span> -->
           </div>
-          <p id="validation-message" class="text-danger mt-1 d-none">
-            아이디는 3글자 이상 10글자 이하로 입력하세요
-          </p>
+          <div class="invalid-feedback">아이디는 3글자 이상 10글자 이하로 입력하세요</div>
         </div>
 
         <div class="mb-3">
@@ -43,14 +41,13 @@
               type="password"
               name="password"
               id="password"
-              class="form-control"
+              class="is-invalid form-control"
               placeholder="비밀번호를 입력하세요"
             />
           </div>
-
-          <p id="validation-message" class="text-danger mt-1 d-none">
+          <div class="invalid-feedback">
             비밀번호는 대소문자, 숫자 또는 특수문자 중 3가지 이상 조합하여 8자 이상 입력하세요
-          </p>
+          </div>
         </div>
 
         <div class="mb-3">
@@ -113,9 +110,20 @@
     </div>
 
     <script>
-      document.getElementById("name").addEventListener("blur", () => {
-        console.log("이름이 맞는지 체크");
-      });
+      document.getElementById("id").addEventListener("blur", validateUserid);
+      document.getElementById("password").addEventListener("blur", validateUserid);
+      document.getElementById("name").addEventListener("blur", validateUsername);
+      document.getElementById("email").addEventListener("blur", validateUserEmail);
+
+      function validateUserid() {
+        const userid = document.getElementById("id");
+        if (userid.value.length < 3 || userid.value.length > 10) {
+          userid.classList.add("is-invalid");
+        } else {
+          userid.classList.remove("is-invalid");
+          userid.classList.add("is-valid");
+        }
+      }
     </script>
 
     <script>
