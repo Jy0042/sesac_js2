@@ -23,16 +23,13 @@
             <span class="input-group-text"><i class="bi bi-person"></i></span>
             <input
               type="text"
-              name="id"
-              id="id"
+              name="userid"
+              id="userid"
               class="form-control"
-              placeholder="아이디를 입력하세요"
+              placeholder="아이디는 3~10글자 입력하세요"
             />
-            <!-- <span class="input-group-text"><i class="bi bi-check-lg text-success"></i></span> -->
+            <div class="invalid-feedback">아이디는 3글자 이상 10글자 이하로 입력하세요</div>
           </div>
-          <p id="validation-message" class="text-danger mt-1 d-none">
-            아이디는 3글자 이상 10글자 이하로 입력하세요
-          </p>
         </div>
 
         <div class="mb-3">
@@ -46,11 +43,10 @@
               class="form-control"
               placeholder="비밀번호를 입력하세요"
             />
+            <div class="invalid-feedback">
+              비밀번호는 대소문자, 숫자 또는 특수문자 중 3가지 이상 조합하여 8자 이상 입력하세요
+            </div>
           </div>
-
-          <p id="validation-message" class="text-danger mt-1 d-none">
-            비밀번호는 대소문자, 숫자 또는 특수문자 중 3가지 이상 조합하여 8자 이상 입력하세요
-          </p>
         </div>
 
         <div class="mb-3">
@@ -64,11 +60,8 @@
               class="form-control"
               placeholder="이름을 입력하세요"
             />
+            <div class="invalid-feedback">이름은 최소 1글자, 최대 10글자까지 입력하세요</div>
           </div>
-
-          <p id="validation-message" class="text-danger mt-1 d-none">
-            이름은 최소 1글자, 최대 10글자까지 입력하세요
-          </p>
         </div>
 
         <div class="mb-3">
@@ -82,27 +75,27 @@
               class="form-control"
               placeholder="이메일을 입력하세요"
             />
+            <div class="invalid-feedback">이메일 형식으로 입력하세요</div>
           </div>
-
-          <p id="validation-message" class="text-danger mt-1 d-none">이메일 형식으로 입력하세요</p>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Birthdate</label>
           <div class="input-group">
             <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-            <input type="date" class="form-control" />
+            <input type="date" name="birth" id="birth" class="form-control" />
           </div>
         </div>
 
         <div class="mb-4">
           <p class="mb-2">관심 분야 (최소 1개, 최대 3개 선택)</p>
-          <div>
-            <p class="mb-1"><input type="checkbox" class="me-2" />관심분야 1</p>
-            <p class="mb-1 me-2"><input type="checkbox" class="me-2" />관심분야 2</p>
-            <p class="mb-1 me-2"><input type="checkbox" class="me-2" />관심분야 3</p>
-            <p class="mb-1 me-2"><input type="checkbox" class="me-2" />관심분야 4</p>
+          <div id="interests">
+            <p class="mb-1"><input type="checkbox" name="interest" class="me-2" />관심분야 1</p>
+            <p class="mb-1"><input type="checkbox" name="interest" class="me-2" />관심분야 2</p>
+            <p class="mb-1"><input type="checkbox" name="interest" class="me-2" />관심분야 3</p>
+            <p class="mb-1"><input type="checkbox" name="interest" class="me-2" />관심분야 4</p>
           </div>
+          <div class="invalid-feedback">최소 1개, 최대 3개만 선택 가능</div>
         </div>
 
         <button type="submit" class="btn btn-primary">제출</button>
@@ -113,9 +106,98 @@
     </div>
 
     <script>
-      document.getElementById("name").addEventListener("blur", () => {
-        console.log("이름이 맞는지 체크");
+      document.getElementById("userid").addEventListener("blur", () => validate("userid"));
+      document.getElementById("password").addEventListener("blur", () => validate("password"));
+      document.getElementById("name").addEventListener("blur", () => validate("name"));
+      document.getElementById("email").addEventListener("blur", () => validate("email"));
+      document.getElementById("birth").addEventListener("blur", () => validate("birth"));
+
+      document.querySelectorAll('input[name="interest"]').forEach((checkbox) => {
+        checkbox.addEventListener("change", validateInterests);
       });
+
+      function validate(fieldId) {
+        const field = document.getElementById(fieldId);
+        let isValid = true;
+
+        if (fieldId === "userid") {
+          if (field.value.length < 3 || field.value.length > 10) {
+            field.classList.add("is-invalid");
+            field.classList.remove("is-valid");
+            isValid = false;
+          } else {
+            field.classList.add("is-valid");
+            field.classList.remove("is-invalid");
+          }
+        }
+
+        if (fieldId === "password") {
+          const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
+          if (!passwordPattern.test(field.value)) {
+            field.classList.add("is-invalid");
+            field.classList.remove("is-valid");
+            isValid = false;
+          } else {
+            field.classList.add("is-valid");
+            field.classList.remove("is-invalid");
+          }
+        }
+
+        if (fieldId === "name") {
+          if (field.value.length < 1 || field.value.length > 10) {
+            field.classList.add("is-invalid");
+            field.classList.remove("is-valid");
+            isValid = false;
+          } else {
+            field.classList.add("is-valid");
+            field.classList.remove("is-invalid");
+          }
+        }
+
+        if (fieldId === "email") {
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(field.value)) {
+            field.classList.add("is-invalid");
+            field.classList.remove("is-valid");
+            isValid = false;
+          } else {
+            field.classList.add("is-valid");
+            field.classList.remove("is-invalid");
+          }
+        }
+
+        if (fieldId === "birth") {
+          const today = new Date();
+          const birthDate = new Date(field.value);
+          if (!field.value || birthDate > today) {
+            field.classList.add("is-invalid");
+            field.classList.remove("is-valid");
+            isValid = false;
+          } else {
+            field.classList.add("is-valid");
+            field.classList.remove("is-invalid");
+          }
+        }
+
+        return isValid;
+      }
+
+      function validateInterests() {
+        const interests = document.querySelectorAll('input[name="interest"]:checked');
+        const interestsDiv = document.getElementById("interests");
+        let isValid = true;
+
+        if (interests.length < 1 || interests.length > 3) {
+          interestsDiv.classList.add("is-invalid");
+          interestsDiv.classList.remove("is-valid");
+          isValid = false;
+        } else {
+          interestsDiv.classList.add("is-valid");
+          interestsDiv.classList.remove("is-invalid");
+        }
+
+        return isValid;
+      }
     </script>
 
     <script>
@@ -125,19 +207,45 @@
       form.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        const formData = new FormData(form);
-        const name = formData.get("name");
-        const email = formData.get("email");
-        const password = formData.get("password");
+        const validId = validate("userid");
+        const validPassword = validate("password");
+        const validName = validate("name");
+        const validEmail = validate("email");
+        const validBirth = validate("birth");
+        const validInterests = validateInterests();
 
-        resultDiv.innerHTML = `
-          <div class="alert alert-success">
-            <h5>폼 제출 완료</h5>
-            <p><strong>Name:</strong>${name}</p>
-            <p><strong>Email:</strong>${email}</p>
-            <p><strong>Password:</strong>${password}</p>
-          </div>
+        if (validId && validPassword && validName && validEmail && validBirth && validInterests) {
+          resultDiv.innerHTML = `
+            <div class="alert alert-success">
+              모든 입력이 올바릅니다.
+            </div>
           `;
+        } else {
+          resultDiv.innerHTML = `
+            <div class="alert alert-danger">
+              입력항목을 확인하세요.
+            </div>
+          `;
+        }
+      });
+    </script>
+
+    <script>
+      document.querySelector('button[type="reset"]').addEventListener("click", () => {
+        // 모든 입력 필드 초기화
+        const inputs = document.querySelectorAll(".form-control");
+        inputs.forEach((input) => {
+          input.classList.remove("is-valid", "is-invalid");
+        });
+
+        // 체크박스 초기화
+        const checkboxes = document.querySelectorAll('input[name="interest"]');
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+        // 결과 메시지 제거
+        resultDiv.innerHTML = "";
       });
     </script>
 
