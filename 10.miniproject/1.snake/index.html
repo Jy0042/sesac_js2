@@ -5,13 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snake Game</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        background-color: #33bf8b;
+      }
       canvas {
-        border: 1px solid black;
+        border: 5px solid black;
+        background: #fff;
+      }
+
+      .scoreContainer {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .scoreContainer p {
+        font-size: 2.5rem;
+        margin-top: 10px;
       }
     </style>
   </head>
   <body>
-    <canvas id="snake" width="400" height="400"></canvas>
+    <div class="container">
+      <div class="scoreContainer">
+        Score
+        <p class="score">0</p>
+      </div>
+      <canvas id="snake" width="400" height="400"></canvas>
+    </div>
     <script src="snake.js"></script>
   </body>
 </html>

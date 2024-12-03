@@ -1,4 +1,5 @@
 const ctx = document.getElementById("snake").getContext("2d");
+const scoreElement = document.querySelector(".score");
 
 // 시작 시 초기값
 const blockSize = 20;
@@ -6,6 +7,8 @@ let direction = "right"; // 뱀 초기 이동 방향
 const snakeSpeed = 200;
 const canvasSize = 400;
 const boardSize = canvasSize / blockSize;
+
+let score = 0;
 
 // 가변 변수들
 let snake = [
@@ -34,23 +37,42 @@ function checkEat() {
   if (snake[0].x === food.x && snake[0].y === food.y) {
     console.log("냠냠");
     food = generateFood();
+    // TODO: Score 처리, 먹었으면 점수 올리기
+    increaseScore();
+
+    // TODO: Snake 길이 증가시키기
+    const tail = snake[snake.length - 1];
+    snake.push({ x: tail.x, y: tail.y });
   }
 
-  // TODO: Score 처리, 먹었으면 점수 올리기
-  // TODO: Snake 길이 증가시키기
   // TODO: 음식이 뱀 몸에 생겼으면? 어떻게?
 }
 
+// 점수 증가
+function increaseScore() {
+  score += 10;
+  scoreElement.textContent = `${score}`;
+}
+
 function generateFood() {
-  const x = Math.floor(Math.random() * boardSize);
-  const y = Math.floor(Math.random() * boardSize);
+  let x, y;
+  let valid = false;
+
+  while (!valid) {
+    x = Math.floor(Math.random() * boardSize);
+    y = Math.floor(Math.random() * boardSize);
+
+    valid = !snake.some((segment) => segment.x === x && segment.y === y);
+  }
 
   return { x, y };
 }
 
 function drawSnake() {
   ctx.fillStyle = "blue";
-  ctx.fillRect(snake[0].x * blockSize, snake[0].y * blockSize, blockSize, blockSize * 2);
+  for (const segment of snake) {
+    ctx.fillRect(segment.x * blockSize, segment.y * blockSize, blockSize, blockSize);
+  }
 }
 
 function drawFood() {
@@ -59,6 +81,10 @@ function drawFood() {
 }
 
 function moveSnake() {
+  for (let i = snake.length - 1; i > 0; i--) {
+    snake[i].x = snake[i - 1].x;
+    snake[i].y = snake[i - 1].y;
+  }
   switch (direction) {
     case "up":
       snake[0].y = snake[0].y - 1;
@@ -93,21 +119,15 @@ function moveSnake() {
 }
 
 document.addEventListener("keydown", (e) => {
-  console.log(e.key);
-  switch (e.key) {
-    case "ArrowUp":
-      direction = "up";
-      break;
-    case "ArrowDown":
-      direction = "down";
-      break;
-    case "ArrowLeft":
-      direction = "left";
-      break;
-    case "ArrowRight":
-      direction = "right";
-      break;
-    // TODO: 위 내용을 좀 더 줄일수 없을까??
+  const keyDirectionMap = {
+    ArrowUp: "up",
+    ArrowDown: "down",
+    ArrowLeft: "left",
+    ArrowRight: "right",
+  };
+
+  if (keyDirectionMap[e.key]) {
+    direction = keyDirectionMap[e.key];
   }
 });
 
