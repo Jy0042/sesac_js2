@@ -4,6 +4,7 @@
     "better-sqlite3": "^11.5.0",
     "body-parser": "^1.20.3",
     "connect-sqlite3": "^0.9.15",
+    "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
     "csv-writer": "^1.6.0",
     "debug": "^4.3.7",
@@ -18,7 +19,6 @@
   "name": "sesac_js2",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
