@@ -40,6 +40,8 @@ export const BoardWrite = ({ addPost }) => {
   const CancelForm = () => {
     const confirmCancel = window.confirm("작성을 취소 하시겠습니까?");
     if (confirmCancel) {
+      setTitle("");
+      setContent("");
       setIsFormOpen(false);
     }
   };
