@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://127.0.0.1:5500/4.nodejs/13.websocket/public/chat_client.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>웹소켓 테스트</h1>
+    <input type="text" id="inputMessage">
+    <button id="sendButton">전송</button>
+    <div id="messageContainer"><p>{"type":"session","username":"afadf"}</p></div>
+    <script>
+      const socket = new WebSocket("ws://localhost:3000/chat");
+
+      let username;
+
+      // 웹소켓이 열리면 호출
+      socket.addEventListener("open", () => {
+        // 맨 처음 접속 시 사용자 이름 받아서 전달
+        username = prompt("이름을 입력하세요");
+        socket.send(JSON.stringify({ type: "session", username: username }));
+        console.log("서버에 연결됨");
+      });
+
+      // 서버로부터 메시지 수신 시 호출
+      socket.addEventListener("message", (event) => {
+        const message = JSON.parse(event.data); // JSON 파싱
+        displayMessage(message);
+      });
+
+      // 버튼 클릭 이벤트
+      document.getElementById("sendButton").addEventListener("click", () => {
+        const inputMessage = document.getElementById("inputMessage");
+        const message = inputMessage.value;
+        sendMessage(message);
+        inputMessage.value = "";
+      });
+
+      // 메시지 전송 함수
+      function sendMessage(message) {
+        const messageObj = { type: "message", content: message };
+        socket.send(JSON.stringify(messageObj)); // JSON 형식으로 서버에 전송
+      }
+
+      // 메시지 표시 함수
+      function displayMessage(message) {
+        const messageContainer = document.getElementById("messageContainer");
+        const messageElement = document.createElement("p");
+        messageElement.textContent = `${JSON.stringify(message)}`;
+        messageContainer.appendChild(messageElement);
+      }
+    </script>
+  <!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>

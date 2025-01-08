@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>웹소켓 테스트</h1>
+    <input type="text" id="inputMessage" />
+    <button id="sendButton">전송</button>
+    <div id="messageContainer"></div>
+    <script>
+      const socket = new WebSocket("ws://localhost:8000");
+
+      // 웹소켓이 열리면 호출
+      socket.addEventListener("open", () => {
+        console.log("서버에 연결됨");
+      });
+
+      // 서버로부터 메시지 수신 시 호출
+      socket.addEventListener("message", (event) => {
+        const message = JSON.parse(event.data); // JSON 파싱
+        displayMessage(message);
+      });
+
+      // 버튼 클릭 이벤트
+      document.getElementById("sendButton").addEventListener("click", () => {
+        const inputMessage = document.getElementById("inputMessage");
+        const message = inputMessage.value;
+        sendMessage(message);
+        inputMessage.value = ""; // 입력 필드 초기화
+      });
+
+      // 메시지 전송 함수
+      function sendMessage(message) {
+        const messageObj = { type: "message", content: message };
+        socket.send(JSON.stringify(messageObj)); // JSON 형식으로 서버에 전송
+      }
+
+      // 메시지 디코딩 함수
+      function decodeMessageData(data) {
+        // Uint8Array 데이터 디코딩
+        const uint8Array = new Uint8Array(data);
+        const decoder = new TextDecoder("utf-8");
+        return decoder.decode(uint8Array);
+      }
+
+      // 메시지 표시 함수
+      function displayMessage(message) {
+        const messageContainer = document.getElementById("messageContainer");
+        const messageElement = document.createElement("p");
+
+        // 메시지가 바이너리 데이터인지 확인
+        let decodedContent;
+        if (message.content instanceof Object && message.content.data) {
+          decodedContent = decodeMessageData(message.content.data);
+        } else {
+          decodedContent = message.content; // 일반 텍스트인 경우
+        }
+
+        messageElement.textContent = `${message.type}: ${decodedContent}`;
+        messageContainer.appendChild(messageElement);
+      }
+    </script>
+  </body>
+</html>
