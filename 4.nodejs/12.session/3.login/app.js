@@ -3,7 +3,7 @@ const session = require("express-session");
 const path = require("path");
 
 const app = express();
-const port = 3000;
+const port = 3004;
 const sessionTime = 10000;
 
 // 미들웨어
@@ -24,16 +24,16 @@ app.use(
   })
 );
 
-// app.use((req, res, next) => {
-//   if (req.session.user) {
-//     req.session.touch();
-//     req.session.cookie.maxAge = sessionTime; // 세션 만료 시간 재설정
+app.use((req, res, next) => {
+  if (req.session.user) {
+    req.session.touch();
+    req.session.cookie.maxAge = sessionTime; // 세션 만료 시간 재설정
 
-//     const remainingTime = req.session.cookie.expires - Date.now();
-//     console.log("세션 남은 시간 (밀리초):", remainingTime);
-//   }
-//   next();
-// });
+    const remainingTime = req.session.cookie.expires - Date.now();
+    console.log("세션 남은 시간 (밀리초):", remainingTime);
+  }
+  next();
+});
 
 // static 폴더 정의
 app.use("/static", express.static(path.join(__dirname, "public")));
