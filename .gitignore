@@ -12,3 +12,6 @@ node_modules/
 
 # credentials
 .env
+
+# 배포용 생성파일
+dist/
